@@ -1,0 +1,6 @@
+2026/03/31-13:13:06.785 76d0 Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/03/31-13:13:06.787 76d0 Recovering log #23
+2026/03/31-13:13:06.788 76d0 Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/000023.log 
+2026/03/31-13:13:06.838 7538 Level-0 table #27: started
+2026/03/31-13:13:06.841 7538 Level-0 table #27: 682087 bytes OK
+2026/03/31-13:13:06.843 7538 Delete type=0 #23

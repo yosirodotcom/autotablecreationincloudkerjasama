@@ -1,0 +1,691 @@
+{
+  "M_kegiatan_kerjasama": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_dokumen_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_kegiatan",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    }
+  ],
+  "M_mitra_bekerjasama": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_pengajuan_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_pic_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_penandatangan_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nomor_dokumen_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jabatan_pic_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jabatan_penandatangan_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "M_output_kegiatan": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_output",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "M_ruang_lingkup": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "id_dokumen_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "id_ruang_lingkup",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "M_tim_pelaksana": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_T_unit_pelaksana_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_T_person",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "status",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "no_id",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jabatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "M_unit_pelaksana_kerjasama": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_unit_pelaksana_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "N_kabupaten_kota": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "provinsi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kabupaten_kota",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "N_indikator_kinerja": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "provinsi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kabupaten_kota",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "N_prodi": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "provinsi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kabupaten_kota",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "N_ruang_lingkup": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "provinsi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kabupaten_kota",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_dokumen_kerjasama": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_pengajuan_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_mou",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nomor_dokumen",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tanggal_penetapan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tanggal_mulai",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tanggal_berakhir",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "link_dokumen",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_penandatangan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "status_laporkerma",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ruang_lingkup",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "deskripsi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "non_dok_pejabat",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jabatan_penandatangan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "alokasi_anggaran",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "income_generate",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "unit_terkait",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "program",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kelengkapan_data",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ref_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_kegiatan": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kategori_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nama_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nilai_kontrak",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sasaran_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "indikator_kinerja",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "link_dokumentasi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "dok_laporan_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tgl_mulai",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tgl_selesai",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "output",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "outcome",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "pic",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "link_pengajuan_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "foto_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sub_kategori",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "deskripsi_kegiatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kategori_nilai_kontrak",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "wilayah_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_mitra": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nib",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kategori_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "badan_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kriteria_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "klasifikasi_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "klbi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tanggal_pendirian",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "alamat",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "negara_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "provinsi_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kabupaten_kota_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "telepon",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kodepos",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "website",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "logo",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "profil",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sub_kategori_mitra",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_output": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "output",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jumlah",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "satuan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "link_bukti",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_pengajuan_kerjasama": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tanggal_pengajuan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sifat_pengajuan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "wilayah_kerjasama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jenis_dokumen",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "judul_dokumen",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "tentang",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "durasi_perjanjian",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "satuan_durasi_perjanjian",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "inisiator",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "inisiasi_lembaga",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "inisiasi_program",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "status_pengajuan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "inisiasi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "keterangan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sub_status",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "unit_polnep",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_person": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "nama",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "email",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "telepon",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jabatan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "alamat",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kantor",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ],
+  "T_ruang_lingkup": [
+    {
+      "name": "id",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "ruang_lingkup",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "sub_ruang_lingkup",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "kategori_ruang_lingkup",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "keterangan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    }
+  ]
+}
