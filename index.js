@@ -219,8 +219,31 @@ const parseLinks = () => {
         try {
             console.log(`\nCreating table: ${table.name}...`);
             
-            // Wait for user to click create table manually for safety, or we try to automate picking the menu
-            await waitForUserInput(`Please expand your 'lookerkerjasama' dataset, left-click the 3 dots, and click 'Create table'.\nOnce the 'Create table' panel is open on the right, press Enter in this terminal...`);
+            // Auto click Create Table menu for 'lookerkerjasama'
+            console.log("  Opening the 'Create table' panel...");
+            
+            // Open context menu for lookerkerjasama
+            // The 3-dot button is often hidden until hovered, so we use force: true
+            // To prevent clicking the newly created table's menu, we scope strictly to the 'lookerkerjasama' tree item
+            let menuBtn = page.locator('cfc-tree-node, mat-tree-node, [role="treeitem"]').filter({ hasText: 'lookerkerjasama' }).locator('button[aria-haspopup="menu"]').first();
+            
+            if (await menuBtn.count() === 0) {
+                menuBtn = page.locator('button[aria-controls*="lookerkerjasama"][aria-haspopup="menu"]').first();
+            }
+            if (await menuBtn.count() === 0) {
+                menuBtn = page.locator('button.node-context-menu[cfctooltip="View actions"]').first();
+            }
+            if (await menuBtn.count() > 0) {
+                await menuBtn.click({ force: true });
+            } else {
+                // Fallback to finding any node context menu by class
+                await page.locator('button.node-context-menu').first().click({ force: true });
+            }
+            await page.waitForTimeout(1000); // give menu time to animate
+            
+            // Click "Create table" from the dropdown
+            await page.locator('.cfc-menu-item-label').filter({ hasText: 'Create table' }).first().click();
+            await page.waitForTimeout(3000); // give the side sliding panel time to open
             
             // 1. Source -> Drive
             console.log('  Selecting Source: Drive...');
@@ -316,8 +339,12 @@ const parseLinks = () => {
                 console.log('  Could not find Advanced options toggle.');
             }
 
-            // Submit
-            await waitForUserInput(`\nPlease rapidly review the filled form for ${table.name}.\nClick "Create table" at the bottom manually.\nWait for it to finish, then press Enter to move to the next table...`);
+            // Auto Submit
+            console.log(`  Submitting the form to create ${table.name}...`);
+            await page.locator('button[type="submit"]').filter({ hasText: 'Create table' }).first().click();
+            
+            console.log('  Waiting 8 seconds for BigQuery to finish creating before moving to next table...');
+            await page.waitForTimeout(8000);
 
         } catch (e) {
             console.error(`Error automating table ${table.name}: ${e.message}`);

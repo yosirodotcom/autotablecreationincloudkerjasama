@@ -210,7 +210,7 @@
   "N_ruang_lingkup": [
     {
       "name": "id",
-      "type": "INTEGER",
+      "type": "STRING",
       "mode": "NULLABLE"
     },
     {
@@ -615,7 +615,7 @@
     },
     {
       "name": "inisiasi_program",
-      "type": "INTEGER",
+      "type": "STRING",
       "mode": "NULLABLE"
     },
     {

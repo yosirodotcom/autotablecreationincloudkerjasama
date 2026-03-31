@@ -1,6 +1,15 @@
-2026/03/31-14:15:07.147 8a84 Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/03/31-14:15:07.149 8a84 Recovering log #45
-2026/03/31-14:15:07.149 8a84 Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/000045.log 
-2026/03/31-14:15:07.224 7604 Level-0 table #50: started
-2026/03/31-14:15:07.228 7604 Level-0 table #50: 682087 bytes OK
-2026/03/31-14:15:07.229 7604 Delete type=0 #45
+2026/03/31-14:38:57.848 50b4 Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/03/31-14:38:57.851 50b4 Recovering log #55
+2026/03/31-14:38:57.852 50b4 Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\EdgeCoupons/coupons_data.db/000055.log 
+2026/03/31-14:38:57.890 7790 Level-0 table #59: started
+2026/03/31-14:38:57.895 7790 Level-0 table #59: 682132 bytes OK
+2026/03/31-14:38:57.897 7790 Delete type=0 #55
+2026/03/31-14:38:57.897 7790 Compacting 4@0 + 1@1 files
+2026/03/31-14:38:57.900 7790 Generated table #60@0: 4 keys, 682039 bytes
+2026/03/31-14:38:57.901 7790 Compacted 4@0 + 1@1 files => 682039 bytes
+2026/03/31-14:38:57.901 7790 compacted to: files[ 0 1 1 0 0 0 0 ]
+2026/03/31-14:38:57.902 7790 Delete type=2 #47
+2026/03/31-14:38:57.902 7790 Delete type=2 #50
+2026/03/31-14:38:57.902 7790 Delete type=2 #53
+2026/03/31-14:38:57.902 7790 Delete type=2 #56
+2026/03/31-14:38:57.902 7790 Delete type=2 #59

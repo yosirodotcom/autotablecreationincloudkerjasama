@@ -1,3 +1,5 @@
-2026/03/31-13:55:41.860 7860 Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Local Storage\leveldb/MANIFEST-000001
-2026/03/31-13:55:41.866 7860 Recovering log #4
-2026/03/31-13:55:41.868 7860 Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Local Storage\leveldb/000004.log 
+2026/03/31-14:34:46.648 768c Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Local Storage\leveldb/MANIFEST-000001
+2026/03/31-14:34:46.653 768c Recovering log #4
+2026/03/31-14:34:46.654 768c Level-0 table #7: started
+2026/03/31-14:34:46.657 768c Level-0 table #7: 24146 bytes OK
+2026/03/31-14:34:46.661 768c Delete type=0 #4

@@ -1,8 +1,3 @@
-2026/03/31-13:55:42.241 7860 Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Session Storage/MANIFEST-000001
-2026/03/31-13:55:42.242 7860 Recovering log #4
-2026/03/31-13:55:42.243 7860 Level-0 table #6: started
-2026/03/31-13:55:42.246 7860 Level-0 table #6: 13035 bytes OK
-2026/03/31-13:55:42.247 7860 Recovering log #6
-2026/03/31-13:55:42.249 7860 Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Session Storage/000006.log 
-2026/03/31-13:55:42.252 7860 Delete type=0 #4
-2026/03/31-13:55:42.252 7860 Delete type=2 #7
+2026/03/31-14:34:46.988 768c Reusing MANIFEST D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Session Storage/MANIFEST-000001
+2026/03/31-14:34:46.989 768c Recovering log #6
+2026/03/31-14:34:46.991 768c Reusing old log D:\repos\autotablecreationincloudkerjasama\browser_session\Default\Session Storage/000006.log 
