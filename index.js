@@ -17,7 +17,13 @@ const waitForUserInput = (query) => {
 };
 
 // Helper to deduce BigQuery type from a string value
-const deduceType = (val) => {
+const deduceType = (colName, val) => {
+    const nameLower = (colName || '').toLowerCase();
+    
+    // Explicit name-based overrides
+    if (nameLower.includes('ref')) return 'STRING';
+    if (nameLower.includes('tanggal')) return 'DATE';
+
     if (val === undefined || val === null || val === '') return 'STRING';
     
     // Check if boolean
@@ -30,7 +36,7 @@ const deduceType = (val) => {
     }
     
     // Check if Date (simple heuristic)
-    const dateRegex = /^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2}:\d{2}(\.\d{1,3})?Z?)?$/;
+    const dateRegex = /^\\d{4}-\\d{2}-\\d{2}(T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,3})?Z?)?$/;
     if (dateRegex.test(val)) return 'TIMESTAMP';
     
     return 'STRING';
@@ -97,68 +103,103 @@ const parseLinks = () => {
     await waitForUserInput('\nPlease log in using the "Log in with Google" button.\nOnce you are successfully logged in and redirected back, press Enter here to continue...');
 
     // 2. Scrape schemas
-    console.log('\n--- Task 1: Scraping Google Sheets ---');
-    const schemas = {};
+    console.log('\\n--- Task 1: Scraping Google Sheets ---');
+    let schemas = {};
+    let shouldScrape = true;
 
-    for (const table of tables) {
+    if (fs.existsSync('schemas.json')) {
+        const answer = await waitForUserInput('\\nFound existing schemas.json from a previous run.\\nDo you want to re-scrape the columns from Google Sheets? (y = scrape again / n = use existing schema): ');
+        if (answer.trim().toLowerCase() === 'n') {
+            console.log('Skipping scraping. Loading existing schemas.json...');
+            schemas = JSON.parse(fs.readFileSync('schemas.json', 'utf-8'));
+            shouldScrape = false;
+        }
+    }
+
+    if (shouldScrape) {
+        for (const table of tables) {
         console.log(`Processing sheet for table: ${table.name}`);
         
         // Convert google sheet URL to export as CSV url
         // Example: https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit#gid=0 -> https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/export?format=csv
         let exportUrl = table.url;
-        const match = table.url.match(/\/d\/([a-zA-Z0-9-_]+)/);
+        const match = table.url.match(new RegExp('/d/([a-zA-Z0-9-_]+)'));
+        const gidMatch = table.url.match(/gid=([0-9]+)/);
+        
         if (match && match[1]) {
             exportUrl = `https://docs.google.com/spreadsheets/d/${match[1]}/export?format=csv`;
+            if (gidMatch && gidMatch[1]) {
+                exportUrl += `&gid=${gidMatch[1]}`;
+            }
         }
 
-        try {
-            // Using Playwright's API context to fetch the CSV (inherits browser cookies so handles auth automatically)
-            const response = await browserContext.request.get(exportUrl);
-            if (!response.ok()) {
-                console.error(`Failed to download CSV for ${table.name}. Status: ${response.status()}`);
-                continue;
-            }
-            const csvText = await response.text();
-            
-            // Simple CSV parsing (handling basic cases)
-            const rows = csvText.split('\n').map(row => {
-                // simple split by comma, ignoring nested commas for simplicity in this script
-                // For a robust solution, a proper csv-parser is recommended.
-                return row.split(',').map(item => item.trim().replace(/^"|"$/g, ''));
-            });
+        let success = false;
+        let attempt = 0;
+        const maxAttempts = 3;
 
-            if (rows.length > 0) {
-                const headers = rows[0];
-                const sampleData = rows.length > 1 ? rows[1] : [];
+        while (!success && attempt < maxAttempts) {
+            attempt++;
+            try {
+                // Using Playwright's API context to fetch the CSV (inherits browser cookies so handles auth automatically)
+                const response = await browserContext.request.get(exportUrl);
+                if (!response.ok()) {
+                    console.error(`  [Attempt ${attempt}] Failed to download CSV for ${table.name}. Status: ${response.status()}`);
+                    if (attempt === maxAttempts) break;
+                    console.log(`  Retrying in 2 seconds...`);
+                    await new Promise(r => setTimeout(r, 2000));
+                    continue;
+                }
+                const csvText = await response.text();
                 
-                const tableSchema = headers.map((header, index) => {
-                    // Safe handling for empty headers
-                    let safeHeader = header.replace(/[^a-zA-Z0-9_]/g, '_');
-                    if (!safeHeader) safeHeader = `Column_${index}`;
-                    
-                    const value = sampleData[index] || '';
-                    const type = deduceType(value);
-                    
-                    return {
-                        name: safeHeader,
-                        type: type,
-                        mode: "NULLABLE"
-                    };
+                // Simple CSV parsing (handling basic cases)
+                const rows = csvText.split('\n').map(row => {
+                    // simple split by comma, ignoring nested commas for simplicity in this script
+                    // For a robust solution, a proper csv-parser is recommended.
+                    return row.split(',').map(item => item.trim().replace(/^"|"$/g, ''));
                 });
 
-                schemas[table.name] = tableSchema;
-                console.log(`  -> Successfully extracted ${headers.length} columns.`);
-            } else {
-                console.log(`  -> URL returned empty CSV for ${table.name}.`);
+                if (rows.length > 0) {
+                    const headers = rows[0];
+                    const sampleData = rows.length > 1 ? rows[1] : [];
+                    
+                    const tableSchema = headers.map((header, index) => {
+                        // Safe handling for empty headers
+                        let safeHeader = header.replace(/[^a-zA-Z0-9_]/g, '_');
+                        if (!safeHeader) safeHeader = `Column_${index}`;
+                        
+                        const value = sampleData[index] || '';
+                        const type = deduceType(safeHeader, value);
+                        
+                        return {
+                            name: safeHeader,
+                            type: type,
+                            mode: "NULLABLE"
+                        };
+                    });
+
+                    schemas[table.name] = tableSchema;
+                    console.log(`  -> Successfully extracted ${headers.length} columns.`);
+                } else {
+                    console.log(`  -> URL returned empty CSV for ${table.name}.`);
+                }
+                
+                success = true; // Mark as successful to exit loop
+            } catch (e) {
+                console.error(`  [Attempt ${attempt}] Error processing ${table.name}: ${e.message}`);
+                if (attempt === maxAttempts) break;
+                console.log(`  Retrying in 2 seconds...`);
+                await new Promise(r => setTimeout(r, 2000));
+                }
             }
             
-        } catch (e) {
-            console.error(`Error processing ${table.name}: ${e.message}`);
+            if (!success) {
+                console.error(`  Skipping ${table.name} after ${maxAttempts} failed attempts.`);
+            }
         }
-    }
 
-    fs.writeFileSync('schemas.json', JSON.stringify(schemas, null, 2));
-    console.log('\nSchemas saved to schemas.json');
+        fs.writeFileSync('schemas.json', JSON.stringify(schemas, null, 2));
+        console.log('\nSchemas saved to schemas.json');
+    }
 
     // 3. Automate BigQuery via UI
     console.log('\n--- Task 2: BigQuery Automation ---');
@@ -262,9 +303,9 @@ const parseLinks = () => {
                 
                 // Unknown values
                 console.log('  Checking "Unknown values"...');
-                const unknownValuesCheckbox = page.locator('mat-checkbox[formcontrolname="ignoreUnknownValues"] input');
-                if (await unknownValuesCheckbox.count() > 0) {
-                    await unknownValuesCheckbox.check({ force: true });
+                const unknownValuesLabel = page.locator('label').filter({ hasText: 'Unknown values' }).first();
+                if (await unknownValuesLabel.count() > 0) {
+                    await unknownValuesLabel.click();
                 }
 
                 // Header rows to skip

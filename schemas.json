@@ -12,7 +12,7 @@
     },
     {
       "name": "ref_kegiatan",
-      "type": "INTEGER",
+      "type": "STRING",
       "mode": "NULLABLE"
     }
   ],
@@ -115,7 +115,7 @@
     },
     {
       "name": "no_id",
-      "type": "INTEGER",
+      "type": "STRING",
       "mode": "NULLABLE"
     },
     {
@@ -165,12 +165,12 @@
       "mode": "NULLABLE"
     },
     {
-      "name": "provinsi",
+      "name": "sasaran_kegiatan",
       "type": "STRING",
       "mode": "NULLABLE"
     },
     {
-      "name": "kabupaten_kota",
+      "name": "indikator_kinerja",
       "type": "STRING",
       "mode": "NULLABLE"
     }
@@ -182,12 +182,27 @@
       "mode": "NULLABLE"
     },
     {
-      "name": "provinsi",
+      "name": "kampus",
       "type": "STRING",
       "mode": "NULLABLE"
     },
     {
-      "name": "kabupaten_kota",
+      "name": "diploma",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jurusan",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "prodi",
+      "type": "STRING",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "prodi2",
       "type": "STRING",
       "mode": "NULLABLE"
     }
@@ -195,16 +210,21 @@
   "N_ruang_lingkup": [
     {
       "name": "id",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+    },
+    {
+      "name": "jenis_kerjasama",
       "type": "STRING",
       "mode": "NULLABLE"
     },
     {
-      "name": "provinsi",
+      "name": "kategori",
       "type": "STRING",
       "mode": "NULLABLE"
     },
     {
-      "name": "kabupaten_kota",
+      "name": "ruang_lingkup",
       "type": "STRING",
       "mode": "NULLABLE"
     }
@@ -232,17 +252,17 @@
     },
     {
       "name": "tanggal_penetapan",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
       "name": "tanggal_mulai",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
       "name": "tanggal_berakhir",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
@@ -282,12 +302,12 @@
     },
     {
       "name": "alokasi_anggaran",
-      "type": "STRING",
+      "type": "NUMERIC",
       "mode": "NULLABLE"
     },
     {
       "name": "income_generate",
-      "type": "STRING",
+      "type": "NUMERIC",
       "mode": "NULLABLE"
     },
     {
@@ -329,7 +349,7 @@
     },
     {
       "name": "nilai_kontrak",
-      "type": "INTEGER",
+      "type": "NUMERIC",
       "mode": "NULLABLE"
     },
     {
@@ -354,12 +374,12 @@
     },
     {
       "name": "tgl_mulai",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
       "name": "tgl_selesai",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
@@ -451,7 +471,7 @@
     },
     {
       "name": "tanggal_pendirian",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
@@ -545,7 +565,7 @@
     },
     {
       "name": "tanggal_pengajuan",
-      "type": "STRING",
+      "type": "DATE",
       "mode": "NULLABLE"
     },
     {
@@ -575,7 +595,7 @@
     },
     {
       "name": "durasi_perjanjian",
-      "type": "STRING",
+      "type": "INTEGER",
       "mode": "NULLABLE"
     },
     {
